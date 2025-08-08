@@ -13,11 +13,11 @@ class LinkedList:
     def printNode(self):
         temp = self.head
         while temp is not None:
-            print(temp)
+            print(f"{temp.value}",end="->")
             temp = temp.next
     def append(self,value):
+        new_node = Node(value)
         if self.head ==None:
-            new_node = Node(value)
             self.head = new_node
             self.tail = new_node
         else:
