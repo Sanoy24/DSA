@@ -15,6 +15,17 @@ class LinkedList:
         while temp is not None:
             print(temp)
             temp = temp.next
+    def append(self,value):
+        if self.head ==None:
+            new_node = Node(value)
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+
 
 linked_list = LinkedList(2)
-print(linked_list.head.value)
+linked_list.append(3)
+linked_list.append(4)
+linked_list.printNode()
