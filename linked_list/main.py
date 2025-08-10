@@ -14,7 +14,7 @@ class LinkedList:
     def print_list(self):
         temp = self.head
         while temp is not None:
-            print(temp.value, end="->")
+            print(temp.value)
             temp = temp.next
 
     def append(self, value):
@@ -44,10 +44,32 @@ class LinkedList:
             self.tail = None
         return temp
 
+    def prepend(self, value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        self.length += 1
+        return True
 
-my_linked_list = LinkedList(1)
-my_linked_list.append(2)
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        else:
+            temp = self.head
+            self.head = self.head.next
+            temp.next = None
+            self.length -= 1
+            if self.length == 0:
+                self.tail = None
+            return temp.value
 
-print(my_linked_list.pop())
-print(my_linked_list.pop())
-print(my_linked_list.pop())
+
+my_linked_list = LinkedList(2)
+# my_linked_list.append(3)
+# my_linked_list.prepend(1)
+print(my_linked_list.pop_first())
+my_linked_list.print_list()
