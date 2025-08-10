@@ -1,31 +1,53 @@
 class Node:
-    def __init__(self,value):
+    def __init__(self, value):
         self.value = value
         self.next = None
 
+
 class LinkedList:
-    def __init__(self,value):
+    def __init__(self, value):
         new_node = Node(value)
         self.head = new_node
         self.tail = new_node
         self.length = 1
-    
-    def printNode(self):
+
+    def print_list(self):
         temp = self.head
         while temp is not None:
-            print(f"{temp.value}",end="->")
+            print(temp.value, end="->")
             temp = temp.next
-    def append(self,value):
+
+    def append(self, value):
         new_node = Node(value)
-        if self.head ==None:
+        if self.length == 0:
             self.head = new_node
             self.tail = new_node
         else:
             self.tail.next = new_node
             self.tail = new_node
+        self.length += 1
+        return True
+
+    def pop(self):
+        if self.length == 0:
+            return None
+        pre = self.head
+        temp = self.head
+        while temp.next:
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return temp
 
 
-linked_list = LinkedList(2)
-linked_list.append(3)
-linked_list.append(4)
-linked_list.printNode()
+my_linked_list = LinkedList(1)
+my_linked_list.append(2)
+
+print(my_linked_list.pop())
+print(my_linked_list.pop())
+print(my_linked_list.pop())
