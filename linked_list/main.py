@@ -14,8 +14,9 @@ class LinkedList:
     def print_list(self):
         temp = self.head
         while temp is not None:
-            print(temp.value)
+            print(temp.value, end="->")
             temp = temp.next
+        print("None")
 
     def append(self, value):
         new_node = Node(value)
@@ -116,7 +117,7 @@ class LinkedList:
         self.tail = temp
         after = temp.next
         before = None
-        for _ in range(self.length):
+        while temp:
             after = temp.next
             temp.next = before
             before = temp
@@ -126,7 +127,12 @@ class LinkedList:
 my_linked_list = LinkedList(1)
 my_linked_list.append(2)
 my_linked_list.append(3)
+
+my_linked_list.append(4)
+my_linked_list.append(5)
 # print(my_linked_list.pop_first())
-print(my_linked_list.set_value(1, 3))
-my_linked_list.insert(1, 10)
+print("----Before reverse ----")
+my_linked_list.print_list()
+print("---After reverse--------")
+my_linked_list.reverse()
 my_linked_list.print_list()
