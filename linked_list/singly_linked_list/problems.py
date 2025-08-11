@@ -165,6 +165,19 @@ class LinkedList:
         return False
 
 
+def find_kth_from_end(ll: LinkedList, k):
+    slow = ll.head
+    fast = ll.head
+    for _ in range(k):
+        if fast is None:
+            return None
+        fast = fast.next
+    while fast:
+        slow = slow.next
+        fast = fast.next
+    return slow
+
+
 my_linked_list = LinkedList(1)
 my_linked_list.append(2)
 my_linked_list.append(3)
@@ -177,3 +190,4 @@ my_linked_list.print_list()
 print("---After reverse--------")
 my_linked_list.reverse()
 my_linked_list.print_list()
+print(find_kth_from_end(my_linked_list, 2).value)
