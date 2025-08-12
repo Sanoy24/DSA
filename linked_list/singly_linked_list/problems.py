@@ -178,6 +178,30 @@ def find_kth_from_end(ll: LinkedList, k):
     return slow
 
 
+def partition_list(self, x):
+    if not self.head:
+        return None
+    dummy_one = Node(0)
+    dummy_two = Node(0)
+
+    before = dummy_one
+    after = dummy_two
+    current = self.head
+    while current:
+        if current < x:
+            before.next = current
+            before = current
+        else:
+            after.next = current
+            after = current
+        current = current.next
+    before.next = None
+    after.next = None
+    before.next = dummy_two.next
+    self.head = dummy_one.next
+    return dummy_one.next
+
+
 my_linked_list = LinkedList(1)
 my_linked_list.append(2)
 my_linked_list.append(3)
