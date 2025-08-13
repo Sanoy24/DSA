@@ -202,6 +202,28 @@ class LinkedList:
 
             current = current.next
 
+    def get_decimal_value(self):
+        dec = 0
+        current = self.head
+        while current:
+            dec = (dec << 1) | current.value
+            current = current.next
+        return dec
+
+    def reverse_between(self, start_index, end_index):
+        dummy_node = Node(0)
+        prev_node = dummy_node
+        dummy_node.next = self.head
+        for _ in range(start_index):
+            prev_node = prev_node.next
+        current_node = prev_node.next
+        for i in range(end_index - start_index):
+            node_to_move = current_node.next
+            current_node.next = node_to_move.next
+            node_to_move.next = prev_node.next
+            prev_node.next = node_to_move
+        self.head = dummy_node.next
+
 
 def find_kth_from_end(ll: LinkedList, k):
     slow = ll.head
@@ -226,6 +248,6 @@ my_linked_list.append(5)
 print("----Before reverse ----")
 my_linked_list.print_list()
 print("---After reverse--------")
-my_linked_list.reverse()
-my_linked_list.print_list()
-print(find_kth_from_end(my_linked_list, 2).value)
+# my_linked_list.reverse()
+# my_linked_list.print_list()
+# print(find_kth_from_end(my_linked_list, 2).value)
