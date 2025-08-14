@@ -1,11 +1,11 @@
 class Node:
-    def __init__(self, value):
+    def __init__(self, value=0):
         self.value = value
         self.next = None
 
 
 class LinkedList:
-    def __init__(self, value):
+    def __init__(self, value=0):
         new_node = Node(value)
         self.head = new_node
         self.tail = new_node
@@ -217,7 +217,7 @@ class LinkedList:
         for _ in range(start_index):
             prev_node = prev_node.next
         current_node = prev_node.next
-        for i in range(end_index - start_index):
+        for _ in range(end_index - start_index):
             node_to_move = current_node.next
             current_node.next = node_to_move.next
             node_to_move.next = prev_node.next
@@ -238,16 +238,89 @@ def find_kth_from_end(ll: LinkedList, k):
     return slow
 
 
-my_linked_list = LinkedList(1)
-my_linked_list.append(2)
-my_linked_list.append(3)
+# Problem: Add Two Numbers
+"""
+You are given two non-empty linked lists representing two non-negative integers.
+The digits are stored in reverse order, and each of their nodes contains a single digit 
+Add the two numbers and return the sum as a linked list.
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+"""
 
-my_linked_list.append(4)
-my_linked_list.append(5)
-# print(my_linked_list.pop_first())
-print("----Before reverse ----")
-my_linked_list.print_list()
-print("---After reverse--------")
+
+def addTwoNumbers(l1: LinkedList, l2: LinkedList) -> LinkedList:
+    dummy = Node(0)
+    current = dummy
+    carry = 0
+    node1 = l1.head
+    node2 = l2.head
+
+    while node1 or node2 or carry:
+        num1 = node1.value if node1 else 0
+        num2 = node2.value if node2 else 0
+        total = num1 + num2 + carry
+        carry = total // 10
+        digit = total % 10
+        print("----------------------")
+        print("carry: ", carry)
+        print("digit: ", digit)
+        print("-----------------------")
+        current.next = Node(digit)
+        current = current.next
+        node1 = node1.next if node1 else None
+        node2 = node2.next if node2 else None
+
+    result = LinkedList(0)
+    result.head = dummy.next
+    result.tail = current
+    result.length = 0
+    temp = result.head
+    while temp:
+        result.length += 1
+        if not temp.next:
+            result.tail = temp
+        temp = temp.next
+
+    return result
+
+
+# my_linked_list.append(2)
+# my_linked_list.append(3)
+
+# my_linked_list.append(4)
+# my_linked_list.append(5)
+# # print(my_linked_list.pop_first())
+# print("----Before reverse ----")
+# my_linked_list.print_list()
+# print("---After reverse--------")
 # my_linked_list.reverse()
 # my_linked_list.print_list()
 # print(find_kth_from_end(my_linked_list, 2).value)
+
+# for value in [2, 3, 4, 5]:
+#     my_linked_list.append(value)
+
+# my_linked_list.reverse_between(1, 3)
+# my_linked_list.print_list()
+
+linked_list_one = LinkedList(6)
+linked_list_two = LinkedList(8)
+linked_list_one.append(6)
+linked_list_one.append(8)
+
+linked_list_two.append(8)
+linked_list_two.append(9)
+
+# 6->6->8
+# 8->8->9
+
+#   866
+# + 988
+# ------
+
+
+# 342 + 543
+
+# l1 = 2->4->3->None
+# l2 = 3->4->5->None
+
+print(addTwoNumbers(linked_list_one, linked_list_two).print_list())
