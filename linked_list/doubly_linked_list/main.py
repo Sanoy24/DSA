@@ -63,54 +63,54 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
+    def pop_first(self):
+        if self.head is None:
+            return None
+        temp = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            temp.next = None
+        self.length -= 1
+        return temp
 
-my_doubly_linked_list = DoublyLinkedList(2)
+    def get(self, index):
+        if index < 0 or index > self.length:
+            return None
+        temp = self.head
+        if index < self.length / 2:
+            for _ in range(index):
+                temp = temp.next
+            return temp
+        else:
+            temp = self.tail
+            for _ in range(self.length - 1, index, -1):
+                temp = temp.prev
+            return temp
+
+
+my_doubly_linked_list = DoublyLinkedList(0)
+my_doubly_linked_list.append(1)
+my_doubly_linked_list.append(2)
 my_doubly_linked_list.append(3)
 
-print("Before prepend():")
-print("----------------")
-print("Head:", my_doubly_linked_list.head.value)
-print("Tail:", my_doubly_linked_list.tail.value)
-print("Length:", my_doubly_linked_list.length, "\n")
-print("Doubly Linked List:")
-my_doubly_linked_list.print_list()
+print("Get node from first half of DLL:")
+print(my_doubly_linked_list.get(1).value)
 
-
-my_doubly_linked_list.prepend(1)
-
-
-print("\n\nAfter prepend():")
-print("---------------")
-print("Head:", my_doubly_linked_list.head.value)
-print("Tail:", my_doubly_linked_list.tail.value)
-print("Length:", my_doubly_linked_list.length, "\n")
-print("Doubly Linked List:")
-my_doubly_linked_list.print_list()
+print("\nGet node from second half of DLL:")
+print(my_doubly_linked_list.get(2).value)
 
 
 """
     EXPECTED OUTPUT:
-    
-    Before prepend():
     ----------------
-    Head: 2
-    Tail: 3
-    Length: 2 
-
-    Doubly Linked List:
-    2
-    3
-
-
-    After prepend():
-    ---------------
-    Head: 1
-    Tail: 3
-    Length: 3 
-
-    Doubly Linked List:
+    Get node from first half of DLL:
     1
+
+    Get node from second half of DLL:
     2
-    3
 
 """
