@@ -120,56 +120,80 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
+    def remove(self, index):
+        if index < 0 or index > self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+        temp = self.get(index)
+        if temp is None:  # Safety check for get method
+            return None
+        prev = temp.prev
+        next_node = temp.next
+        prev.next = next_node
+        next_node.prev = prev
+        temp.next = None
+        temp.prev = None
+        self.length -= 1
+        return temp
+
 
 my_doubly_linked_list = DoublyLinkedList(1)
+my_doubly_linked_list.append(2)
 my_doubly_linked_list.append(3)
+my_doubly_linked_list.append(4)
+my_doubly_linked_list.append(5)
 
-
-print("DLL before insert():")
+print("DLL before remove():")
 my_doubly_linked_list.print_list()
 
-
-my_doubly_linked_list.insert(1, 2)
-
-print("\nDLL after insert(2) in middle:")
+print("\nRemoved node:")
+print(my_doubly_linked_list.remove(2).value)
+print("DLL after remove() in middle:")
 my_doubly_linked_list.print_list()
 
-
-my_doubly_linked_list.insert(0, 0)
-
-print("\nDLL after insert(0) at beginning:")
+print("\nRemoved node:")
+print(my_doubly_linked_list.remove(0).value)
+print("DLL after remove() of first node:")
 my_doubly_linked_list.print_list()
 
-
-my_doubly_linked_list.insert(4, 4)
-
-print("\nDLL after insert(4) at end:")
+print("\nRemoved node:")
+print(my_doubly_linked_list.remove(2).value)
+print("DLL after remove() of last node:")
 my_doubly_linked_list.print_list()
 
 
 """
     EXPECTED OUTPUT:
     ----------------
-    DLL before insert():
-    1
-    3
-
-    DLL after insert(2) in middle:
+    DLL before remove():
     1
     2
     3
+    4
+    5
 
-    DLL after insert(0) at beginning:
-    0
+    Removed node:
+    3
+    DLL after remove() in middle:
     1
     2
-    3
+    4
+    5
 
-    DLL after insert(4) at end:
-    0
+    Removed node:
     1
+    DLL after remove() of first node:
     2
-    3
+    4
+    5
+
+    Removed node:
+    5
+    DLL after remove() of last node:
+    2
     4
 
 """
