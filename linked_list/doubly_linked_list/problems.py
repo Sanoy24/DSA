@@ -151,40 +151,44 @@ class DoublyLinkedList:
             current = current.prev
         self.head, self.tail = self.tail, self.head
 
-
-my_doubly_linked_list = DoublyLinkedList(1)
-my_doubly_linked_list.append(2)
-my_doubly_linked_list.append(3)
-my_doubly_linked_list.append(4)
-my_doubly_linked_list.append(5)
-
-
-print("DLL before reverse():")
-my_doubly_linked_list.print_list()
-
-
-my_doubly_linked_list.reverse()
+    def is_palindrome(self):
+        if self.length <= 1:
+            return True
+        forward_node = self.head
+        backward_node = self.tail
+        for i in range(self.length // 2):
+            if forward_node.value != backward_node.value:
+                return False
+            forward_node = forward_node.next
+            backward_node = backward_node.prev
+        return True
 
 
-print("\nDLL after reverse():")
-my_doubly_linked_list.print_list()
+my_dll_1 = DoublyLinkedList(1)
+my_dll_1.append(2)
+my_dll_1.append(3)
+my_dll_1.append(2)
+my_dll_1.append(1)
+
+print("my_dll_1 is_palindrome:")
+print(my_dll_1.is_palindrome())
+
+
+my_dll_2 = DoublyLinkedList(1)
+my_dll_2.append(2)
+my_dll_2.append(3)
+
+print("\nmy_dll_2 is_palindrome:")
+print(my_dll_2.is_palindrome())
 
 
 """
     EXPECTED OUTPUT:
     ----------------
-    DLL before reverse():
-    1
-    2
-    3
-    4
-    5
+    my_dll_1 is_palindrome:
+    True
 
-    DLL after reverse():
-    5
-    4
-    3
-    2
-    1
+    my_dll_2 is_palindrome:
+    False
 
 """
