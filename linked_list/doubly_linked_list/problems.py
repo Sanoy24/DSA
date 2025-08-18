@@ -163,32 +163,46 @@ class DoublyLinkedList:
             backward_node = backward_node.prev
         return True
 
+    def swap_pairs(self):
+        if not self.head or not self.head.next:
+            return
 
-my_dll_1 = DoublyLinkedList(1)
-my_dll_1.append(2)
-my_dll_1.append(3)
-my_dll_1.append(2)
-my_dll_1.append(1)
+        dummy_node = Node(0)
+        dummy_node.next = self.head
+        prev_node = dummy_node
 
-print("my_dll_1 is_palindrome:")
-print(my_dll_1.is_palindrome())
+        while self.head and self.head.next:
+            first_node = self.head
+            second_node = self.head.next
+
+            prev_node.next = second_node
+            first_node.next = second_node.next
+            second_node.next = first_node
+
+            second_node.prev = prev_node
+            first_node.prev = second_node
+
+            if first_node.next:
+                first_node.next.prev = first_node
+            self.head = first_node.next
+            prev_node = first_node
+
+        self.head = dummy_node.next
+        if self.head:
+            self.head.prev = None
 
 
-my_dll_2 = DoublyLinkedList(1)
-my_dll_2.append(2)
-my_dll_2.append(3)
-
-print("\nmy_dll_2 is_palindrome:")
-print(my_dll_2.is_palindrome())
+my_dll = DoublyLinkedList(1)
+my_dll.append(2)
+my_dll.append(3)
+my_dll.append(4)
 
 
-"""
-    EXPECTED OUTPUT:
-    ----------------
-    my_dll_1 is_palindrome:
-    True
+print("my_dll before swap_pairs:")
+my_dll.print_list()
 
-    my_dll_2 is_palindrome:
-    False
+my_dll.swap_pairs()
 
-"""
+print("------------------------")
+print("my_dll after swap_pairs:")
+my_dll.print_list()
