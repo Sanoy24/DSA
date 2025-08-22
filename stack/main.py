@@ -18,7 +18,7 @@ class Stack:
         values = []
         temp = self.top
         while temp:
-            value = values.append(str(temp.value))
+            values.append(str(temp.value))
             temp = temp.next
         return "->".join(values) if values else "Empty"
 
@@ -42,6 +42,11 @@ class Stack:
         self.height -= 1
         return temp.value  # removed value
 
+    def peek(self):
+        if self.top is None:
+            return None
+        return self.top.value
+
 
 my_stack = Stack()
 my_stack.push(1)
@@ -52,3 +57,4 @@ my_stack.push(5)
 print("Initial stack:", my_stack)
 print("Popped:", my_stack.pop())
 print("After popping:", my_stack)
+print("Peek:", my_stack.peek())

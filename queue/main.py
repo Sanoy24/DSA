@@ -1,11 +1,26 @@
+"""
+A Node for a linked list-based data structure.
+"""
+
+
 class Node:
     def __init__(self, value):
+        """
+        Creates a new Node instance.
+        @param {*} value - The value to store in the node.
+        """
         self.value = value
         self.next = None
 
 
 class Queue:
+
     def __init__(self, value=None):
+        """
+        Creates a new Queue instance.
+
+        @param {*} [value=None] - An optional initial value to add to the queue.
+        """
         if value is not None:
             new_node = Node(value)
             self.first = new_node
@@ -17,6 +32,11 @@ class Queue:
             self.length = 0
 
     def __str__(self):
+        """
+        Returns a string representation of the queue.
+
+        @returns {string} - A string showing the queue's elements, or "empty" if the queue is empty.
+        """
         values = []
         temp = self.first
         while temp:
@@ -25,6 +45,11 @@ class Queue:
         return "->".join(values) if values else "Empty"
 
     def enqueue(self, value: int) -> None:
+        """
+        Adds a new node to the end of the queue.
+
+        @param {number} value - The value to add.
+        """
         new_node = Node(value)
         if self.first is None:
             self.first = new_node
@@ -35,6 +60,11 @@ class Queue:
         self.length += 1
 
     def dequeue(self):
+        """
+        Removes and returns the first node from the queue.
+
+        @returns {number|null} - The value of the dequeued node, or null if the queue is empty.
+        """
         if self.first is None:
             return None
         temp = self.first
