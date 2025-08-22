@@ -35,7 +35,3 @@ python stack/main.py
 ## Contributing
 
 Feel free to fork and add new data structures, algorithms, or problems!
-
-## License
-
-This project is for
