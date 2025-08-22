@@ -64,23 +64,44 @@ using only one additional stack.
 
 def sort_stack(stack: Stack):
     _nstack = Stack()
-    for i in range(stack.size, -1, -1):
-        stack.peek
+    while not stack.is_empty():
+        temp = stack.pop()
+        while not _nstack.is_empty() and _nstack.peek() > temp:
+            stack.push(_nstack.pop())
+        _nstack.push(temp)
+    while not _nstack.is_empty():
+        stack.push(_nstack.pop())
 
 
-new_stack = Stack()
-new_stack.push(1)
-new_stack.push(2)
-new_stack.push(3)
-new_stack.push(4)
-new_stack.push(5)
+# new_stack = Stack()
+# new_stack.push(1)
+# new_stack.push(2)
+# new_stack.push(3)
+# new_stack.push(4)
+# new_stack.push(5)
 
-print("-----------before--------")
-print(new_stack)
-print("------pop last element--------")
-print(new_stack.pop())
-print(new_stack.pop())
-print("---------------after poppping")
-print(new_stack)
+# print("-----------before--------")
+# print(new_stack)
+# print("------pop last element--------")
+# print(new_stack.pop())
+# print(new_stack.pop())
+# print("---------------after poppping")
+# print(new_stack)
 
-print(reverse_string("YONAS"))
+# print(reverse_string("YONAS"))
+
+
+my_stack = Stack()
+my_stack.push(3)
+my_stack.push(1)
+my_stack.push(5)
+my_stack.push(4)
+my_stack.push(2)
+
+print("Stack before sort_stack():")
+my_stack.print_stack()
+
+sort_stack(my_stack)
+
+print("\nStack after sort_stack:")
+my_stack.print_stack()
