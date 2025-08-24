@@ -7,14 +7,18 @@ This repository contains Python implementations of fundamental data structures a
 -   `linked_list/`
     -   `singly_linked_list/`
         -   `main.py`: Basic singly linked list operations
-        -   `problems.py`: Advanced problems and interview-style questions
+        -   `problems.py`: Practice problems and interview-style questions
     -   `doubly_linked_list/`
         -   `main.py`: Basic doubly linked list operations
-        -   `problems.py`: Advanced problems and interview-style questions
+        -   `problems.py`: Practice problems and interview-style questions
 -   `stack/`
     -   `main.py`: Stack implementation and usage
+    -   `problems.py`: Stack-related problems and exercises
 -   `queue/`
     -   `main.py`: Queue implementation and usage
+    -   `problems.py`: Queue-related problems and exercises
+-   `tree/`
+    -   `main.py`: Binary tree and related operations
 
 ## Usage
 
