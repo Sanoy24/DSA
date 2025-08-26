@@ -10,6 +10,8 @@ class BinarySearchTree:
         self.root = None
 
     def insert(self, value):
+        if not isinstance(value, (int, float)):
+            raise ValueError("value must be a number")
         new_node = Node(value=value)
         if self.root is None:
             self.root = new_node
@@ -29,14 +31,7 @@ class BinarySearchTree:
                     return True
                 temp = temp.right
 
-    def print_root(self):
-        print("root ->", self.root.value)
-        print("root.left ->", self.root.left.value)
-        print("root.rigt ->", self.root.right.value)
-
     def contains(self, value):
-        # if self.root is None:
-        #     return False
         temp = self.root
         while temp is not None:
             if value < temp.value:
@@ -52,5 +47,4 @@ _binary_tree = BinarySearchTree()
 _binary_tree.insert(2)
 _binary_tree.insert(1)
 _binary_tree.insert(3)
-_binary_tree.print_root()
 print(_binary_tree.contains(5))
