@@ -3,7 +3,15 @@ class HashTable:
         self.data_map = [None] * size
 
     def __hash(self, key):
-        hash_value = 0
-        for char in key:
-            hash_value += ord(char)
-        return hash_value % len(self.data_map)
+        my_hash = 0
+        for letter in key:
+            my_hash = (my_hash + ord(letter) * 23) % len(self.data_map)
+        return my_hash
+
+    def print_table(self):
+        for i, val in enumerate(self.data_map):
+            print(i, " : ", val)
+
+
+my_hash_table = HashTable()
+my_hash_table.print_table()
