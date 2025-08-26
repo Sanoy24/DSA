@@ -26,6 +26,14 @@ class HashTable:
                     return pair[1]
         return None
 
+    def keys(self):
+        all_keys = []
+        for bucket in self.data_map:
+            if bucket is not None:
+                for pair in bucket:
+                    all_keys.append(pair[0])
+        return all_keys
+
 
 my_hash_table = HashTable()
 my_hash_table.print_table()
@@ -34,3 +42,4 @@ my_hash_table.set_item("washers", 50)
 my_hash_table.set_item("lumber", 70)
 my_hash_table.print_table()
 print(my_hash_table.get_item("bolts"))
+print(my_hash_table.keys())
