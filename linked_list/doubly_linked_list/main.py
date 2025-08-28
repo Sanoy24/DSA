@@ -1,18 +1,18 @@
 class Node:
-    def __init__(self, value):
+    def __init__(self, value: int) -> None:
         self.value = value
         self.next = None
         self.prev = None
 
 
 class DoublyLinkedList:
-    def __init__(self, value):
+    def __init__(self, value: int) -> None:
         new_node = Node(value)
         self.head = new_node
         self.tail = new_node
         self.length = 1
 
-    def print_list(self):
+    def print_list(self) -> None:
         if self.head is None:
             return None
         else:
@@ -22,7 +22,7 @@ class DoublyLinkedList:
                 current = current.next
             print()
 
-    def append(self, value):
+    def append(self, value: int) -> None:
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
@@ -35,7 +35,7 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
-    def pop(self):
+    def pop(self) -> None:
         if self.head is None:
             return None
         temp = self.tail
@@ -49,7 +49,7 @@ class DoublyLinkedList:
         self.length -= 1
         return temp
 
-    def prepend(self, value):
+    def prepend(self, value: int) -> None:
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
@@ -63,7 +63,7 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
-    def pop_first(self):
+    def pop_first(self) -> None:
         if self.head is None:
             return None
         temp = self.head
@@ -77,7 +77,7 @@ class DoublyLinkedList:
         self.length -= 1
         return temp
 
-    def get(self, index):
+    def get(self, index: int) -> None:
         if index < 0 or index > self.length:
             return None
         temp = self.head
@@ -91,7 +91,7 @@ class DoublyLinkedList:
                 temp = temp.prev
             return temp
 
-    def set_value(self, index, value):
+    def set_value(self, index: int, value: int) -> None:
         temp = self.get(index)
         if temp:
             temp.value = value
