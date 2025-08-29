@@ -114,7 +114,7 @@ def group_anagrams(string: list):
 print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 
 """
- HT Two Sum ( Interview Question)
+HT Two Sum ( Interview Question)
 Instructions
 two_sum()
 Problem:
@@ -137,4 +137,147 @@ def two_sum(nums: list[int], target: int):
     return []
 
 
+def subarray_sum(nums: list[int], target: int) -> list[int]:
+    prefix_sums = {0: -1}
+    current_sum = 0
+    for i, num in enumerate(nums):
+        current_sum += num
+        complement = current_sum - target
+        if complement in prefix_sums:
+            return [prefix_sums[complement] + 1, i]
+        if current_sum not in prefix_sums:
+            prefix_sums[current_sum] = i
+    return []
+
+
 print(two_sum([1, 2, 3, 4, 5, 6], 4))
+print(subarray_sum([1, 2, 3, 4, 5], 9))
+
+
+"""
+Set Remove Duplicates ( Interview Question)
+Instructions
+You have been given a list my_list with some duplicate values.
+Your task is to write a Python program that removes all the
+duplicates from the list using a set and then prints the updated list.
+You need to implement a function remove_duplicates(my_list) that takes
+in the input list my_list as a parameter and returns a new list with no
+duplicates.
+Your function should not modify the original list, instead, it should 
+create a new list with unique values and return it.
+Example:
+Input:
+my_list = [1, 2, 3, 4, 1, 2, 5, 6, 7, 3, 4, 8, 9, 5]
+Output:
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+Note:
+The order of the elements in the updated list may be different
+from the original list, as sets are unordered.
+"""
+
+
+def remove_duplicates(my_list: list) -> list[int | str]:
+    updated_list = list(set(my_list))
+    return updated_list
+
+
+print(remove_duplicates([1, 2, 3, 4, 1, 2, 5, 6, 7, 3, 4, 8, 9, 5]))
+
+"""
+Set Has Unique Chars ( Interview Question)
+Instructions
+Write a function called has_unique_chars that takes a string
+as input and returns True if all the characters in the string
+are unique, and False otherwise.
+For example, has_unique_chars('abcdefg') should return True,
+while has_unique_chars('hello') should return False
+"""
+
+
+def has_unique_chars(string: str):
+    return len(set(string)) == len(string)
+
+
+print(has_unique_chars("hello"))
+
+
+"""
+Set Find Pairs ( Interview Question)
+Instructions
+You are given two lists of integers, arr1 and arr2, and a target
+integer value, target. Your task is to find all pairs of numbers
+(one from arr1 and one from arr2) whose sum equals target.
+Write a function called find_pairs that takes in three arguments:
+arr1, arr2, and target, and returns a list of all such pairs.
+Assume that each array does not contain duplicate values.
+The tests for this exercise assume that arr1 is the list being
+converted to a set.
+Input
+Your function should take in the following inputs:
+arr1: a list of integers
+arr2: a list of integers
+target: an integer
+Output
+Your function should return a list of tuples, where each tuple contains two integers from arr1 and arr2 that add up to target.
+Example 1:
+arr1 = [1, 2, 3]
+arr2 = [4, 5, 6]
+target = 9
+pairs = find_pairs(arr1, arr2, target)
+print (pairs)
+# Expected output: [(3, 6)]
+# Explanation: There's only one pair that adds up to 9: 3
+# from arr1 and 6 from arr2.
+"""
+
+
+def find_pairs(arr1: list[int], arr2: list[int], target: int) -> list[tuple[int, int]]:
+    set1 = set(arr1)
+    my_list = []
+    for num in arr2:
+        comlement = target - num
+        if comlement in set1:
+            my_list.append((comlement, num))
+    return my_list
+
+
+arr1 = [0, 1, 2]
+arr2 = [7, 8, 9]
+target = 10
+
+print(find_pairs(arr1, arr2, target))
+
+"""
+Set Longest Consecutive Sequence ( Interview Question)
+Instructions
+Given an unsorted array of integers, write a function that finds the
+length of the  longest_consecutive_sequence (i.e., sequence of integers
+in which each element is one greater than the previous element).
+Use sets to optimize the runtime of your solution.
+Input: An unsorted array of integers, nums.
+Output: An integer representing the length of the longest consecutive sequence
+in nums.
+Example:
+Input: nums = [100, 4, 200, 1, 3, 2]
+Output: 4
+Explanation: The longest consecutive sequence in the input 
+array is [4, 3, 2, 1], and its length is 4.
+"""
+
+
+def longest_consecutive_sequence(nums: list[int]) -> list[int]:
+    num_set = set(nums)
+    max_length = 0
+    for num in num_set:
+        if num - 1 not in num_set:
+            current_num = num
+            current_length = 1
+            while current_num + 1 in num_set:
+                current_num += 1
+                current_length += 1
+            max_length = max(max_length, current_length)
+    return max_length
+
+
+nums = [100, 4, 200, 1, 3, 2]
+print(longest_consecutive_sequence(nums=nums))
