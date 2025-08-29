@@ -281,3 +281,41 @@ def longest_consecutive_sequence(nums: list[int]) -> list[int]:
 
 nums = [100, 4, 200, 1, 3, 2]
 print(longest_consecutive_sequence(nums=nums))
+
+"""
+Find Common Elements Between Two Arrays
+You are given two integer arrays nums1 and nums2 of sizes n and m, respectively.
+Calculate the following values:
+
+answer1 : the number of indices i such that nums1[i] exists in nums2.
+answer2 : the number of indices i such that nums2[i] exists in nums1.
+Return [answer1,answer2].
+
+ 
+
+Example 1:
+
+Input: nums1 = [2,3,2], nums2 = [1,2]
+
+Output: [2,1]
+"""
+
+
+class Solution:
+    def findIntersectionValues(self, nums1: list[int], nums2: list[int]) -> list[int]:
+        set1 = set(nums1)
+        set2 = set(nums2)
+
+        answer1 = 0
+        for num in nums1:
+            if num in set2:
+                answer1 += 1
+        answer2 = 0
+        for num in nums2:
+            if num in set1:
+                answer2 += 1
+        return [answer1, answer2]
+
+
+sol = Solution()
+print(sol.findIntersectionValues([4, 3, 2, 3, 1], [2, 2, 5, 2, 3, 6]))
