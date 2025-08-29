@@ -81,3 +81,60 @@ def first_non_repeating_character(string):
 
 
 print(first_non_repeating_character("hello"))
+
+"""
+004 HT Group Anagrams ( Interview Question)
+Instructions
+You have been given an array of strings, where each string may
+contain only lowercase English letters. You need to write a 
+function group_anagrams(strings) that groups the anagrams in
+the array together using a hash table (dictionary). The function
+should return a list of lists, where each inner list contains a
+group of anagrams.
+For example, if the input array is ["eat", "tea", "tan", "ate", "nat", "bat"]
+the function should return [["eat","tea","ate"],["tan","nat"],["bat"]]
+because the first three strings are anagrams of each other, the next two
+strings are anagrams of each other, and the last string has no anagrams in the input array.
+You need to implement the group_anagrams(strings) function and return a list of lists,
+where each inner list contains a group of anagrams according to the above requirements.
+"""
+
+
+def group_anagrams(string: list):
+    container = {}
+    for word in string:
+        sorted_word = "".join(sorted(word))
+        if sorted_word in container:
+            container[sorted_word].append(word)
+        else:
+            container[sorted_word] = [word]
+    return list(container.values())
+
+
+print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+"""
+ HT Two Sum ( Interview Question)
+Instructions
+two_sum()
+Problem:
+Given an array of integers nums and a target integer target,
+find the indices of two numbers in the array that add up to the target.
+The main challenge here is to implement this function in one pass
+through the array. This means you should not iterate over the array
+more than once. Therefore, your solution should have a time
+complexity of O(n), where n is the number of elements in nums
+"""
+
+
+def two_sum(nums: list[int], target: int):
+    container = {}
+    for index, value in enumerate(nums):
+        complement = target - value
+        if complement in container:
+            return [container[complement], index]
+        container[value] = index
+    return []
+
+
+print(two_sum([1, 2, 3, 4, 5, 6], 4))
