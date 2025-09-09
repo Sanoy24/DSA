@@ -24,11 +24,37 @@ class Graph:
             return True
         return False
 
+    def remove_edge(self, v1: Vertex, v2: Vertex) -> bool:
+        if v1 in self.adj_list.keys() and v2 in self.adj_list.keys():
+            self.adj_list[v1].remove(v2)
+            self.adj_list[v2].remove(v1)
+            return True
+        return False
+
+    def remove_vertex(self, v1: Vertex) -> bool:
+        if v1 in self.adj_list.keys():
+            for other_vertex in self.adj_list[v1]:
+                self.adj_list[other_vertex].remove(v1)
+            del self.adj_list[v1]
+            return True
+        return False
+
 
 # Example usage
-myGraph = Graph()
-myGraph.add_vertex("A")
-myGraph.add_vertex("B")
-myGraph.add_edges("A", "B")
+#      A
+#     /  \
+#   B------C
+#
+#
 
-myGraph.print_graph()
+my_graph = Graph()
+
+my_graph.add_vertex("A")
+my_graph.add_vertex("B")
+my_graph.add_vertex("C")
+
+my_graph.add_edges("A", "B")
+my_graph.add_edges("B", "C")
+my_graph.add_edges("C", "A")
+
+my_graph.print_graph()
